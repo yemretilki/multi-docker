@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t yemretilki/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t btilkid/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true yemretilki/react-test npm test
+  - docker run -e CI=true btilkid/react-test npm test
 
 after_success:
-  - docker build -t yemretilki/multi-client ./client
-  - docker build -t yemretilki/multi-nginx ./nginx
-  - docker build -t yemretilki/multi-server ./server
-  - docker build -t yemretilki/multi-worker ./worker
+  - docker build -t btilkid/multi-client ./client
+  - docker build -t btilkid/multi-nginx ./nginx
+  - docker build -t btilkid/multi-server ./server
+  - docker build -t btilkid/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push yemretilki/multi-client
-  - docker push yemretilki/multi-nginx
-  - docker push yemretilki/multi-server
-  - docker push yemretilki/multi-worker
+  - docker push btilkid/multi-client
+  - docker push btilkid/multi-nginx
+  - docker push btilkid/multi-server
+  - docker push btilkid/multi-worker
